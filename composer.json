@@ -1,0 +1,32 @@
+{
+    "name": "luohonen/laravel-union-sdk",
+    "type": "library",
+    "description": "CPS联盟六合一SDK，支持淘宝联盟、京东联盟、多多进宝、唯品会、苏宁、蘑菇街",
+    "keywords": ["CPS联盟","CPS联盟SDK"],
+    "homepage": "https://github.com/luohonen/laravel-union-sdk",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "luohonen",
+            "email": "545282636@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "illuminate/support": "~5.8|~6.0|~7.0|~8.0",
+        "graham-campbell/manager": "^2.0|^3.0|^4.0",
+        "laravel/helpers": "^1.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Luohonen\\LaravelUnionSdk\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Luohonen\\LaravelUnionSdk\\ServiceProvider"
+            ]
+        }
+    }
+}
