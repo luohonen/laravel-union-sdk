@@ -8,6 +8,7 @@ use Luohonen\LaravelUnionSdk\JingDong\Application as JingDong;
 use Luohonen\LaravelUnionSdk\Vip\Application as Vip;
 use Luohonen\LaravelUnionSdk\SuNing\Application as SuNing;
 use Luohonen\LaravelUnionSdk\Vip\Osp\Context\InvocationContext;
+use Illuminate\Support\Arr;
 
 /**
  * Class Factory.
@@ -101,31 +102,31 @@ class Factory
                 throw new \InvalidArgumentException('The top client requires api keys.');
             }
             $config['app_key'] = (string)$config['app_key'];
-            return array_only($config, ['app_key', 'app_secret', 'format']);
+            return Arr::only($config, ['app_key', 'app_secret', 'format']);
         }
         if ($name == "pinduoduo") {
             if (!array_key_exists('client_id', $config) || !array_key_exists('client_secret', $config)) {
                 throw new \InvalidArgumentException('The pinduoduo client requires client_id and client_secret.');
             }
-            return array_only($config, ['client_id', 'client_secret', 'format']);
+            return Arr::only($config, ['client_id', 'client_secret', 'format']);
         }
         if ($name == "jingdong") {
             if (!array_key_exists('app_key', $config) || !array_key_exists('app_secret', $config)) {
                 throw new \InvalidArgumentException('The jingdong client requires app_key and app_secret.');
             }
-            return array_only($config, ['app_key', 'app_secret', 'format']);
+            return Arr::only($config, ['app_key', 'app_secret', 'format']);
         }
         if ($name == "vip") {
             if (!array_key_exists('app_key', $config) || !array_key_exists('app_secret', $config)) {
                 throw new \InvalidArgumentException('The vip client requires app_key and app_secret.');
             }
-            return array_only($config, ['app_key', 'app_secret', 'access_token', 'format']);
+            return Arr::only($config, ['app_key', 'app_secret', 'access_token', 'format']);
         }
         if ($name == "suning") {
             if (!array_key_exists('app_key', $config) || !array_key_exists('app_secret', $config)) {
                 throw new \InvalidArgumentException('The suning client requires app_key and app_secret.');
             }
-            return array_only($config, ['app_key', 'app_secret', 'format']);
+            return Arr::only($config, ['app_key', 'app_secret', 'format']);
         }
 
     }
