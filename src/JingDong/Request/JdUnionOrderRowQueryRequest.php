@@ -8,34 +8,34 @@ use Luohonen\LaravelUnionSdk\JingDong\RequestInterface;
  * Class JdUnionOrderQueryRequest
  * @package Luohonen\LaravelUnionSdk\JingDong\Request
  */
-class JdUnionOrderQueryRequest implements RequestInterface
+class JdUnionOrderRowQueryRequest implements RequestInterface
 {
     /**
      * 订单查询接口
-     * @url https://union.jd.com/#/openplatform/api/650
+     * @url https://union.jd.com/openplatform/api/v2?apiName=jd.union.open.order.row.query
      * @var string
      */
-    private $method = 'jd.union.open.order.query';
+    private $method = 'jd.union.open.order.row.query';
 
 
     /**
-     * 查询时间，建议使用分钟级查询，格式：yyyyMMddHH、yyyyMMddHHmm或yyyyMMddHHmmss，如201811031212 的查询范围从12:12:00--12:12:59
+     * 开始时间 格式yyyy-MM-dd HH:mm:ss，与endTime间隔不超过1小时
      * @var
      */
-    private $time;
-
+    private $startTime;
 
     /**
-     * 子站长ID（需要联系运营开通PID账户权限才能拿到数据），childUnionId和key不能同时传入
+     * 结束时间 格式yyyy-MM-dd HH:mm:ss，与startTime间隔不超过1小时
      * @var
      */
-    private $childUnionId;
+    private $endTime;
+
 
     /**
      * 页码，返回第几页结果
      * @var
      */
-    private $pageNo ;
+    private $pageIndex ;
 
     /**
      * 页码
@@ -52,57 +52,52 @@ class JdUnionOrderQueryRequest implements RequestInterface
 
 
     /**
-     * 其他推客的授权key，查询工具商订单需要填写此项，childUnionid和key不能同时传入
-     * @var
-     */
-    private $key;
-
-    /**
      * @return mixed
      */
-    public function getTime()
+    public function getStartTime()
     {
-        return $this->time;
+        return $this->startTime;
     }
 
     /**
-     * @param mixed $time
+     * @param $startTime
      */
-    public function setTime($time): void
+    public function setStartTime($startTime): void
     {
-        $this->time = $time;
+        $this->startTime = $startTime;
     }
 
     /**
      * @return mixed
      */
-    public function getChildUnionId()
+    public function getEndTime()
     {
-        return $this->childUnionId;
+        return $this->endTime;
     }
 
     /**
-     * @param mixed $childUnionId
+     * @param $endTime
      */
-    public function setChildUnionId($childUnionId): void
+    public function setEndTime($endTime): void
     {
-        $this->childUnionId = $childUnionId;
+        $this->endTime = $endTime;
     }
+
 
     /**
      * @return mixed
      */
-    public function getPageNo()
+    public function getPageIndex()
     {
-        return $this->pageNo;
+        return $this->pageIndex;
     }
 
     /**
-     * @param mixed $pageNo
+     * @param mixed $pageIndex
      */
-    public function setPageNo($pageNo): void
+    public function setPageIndex($pageIndex): void
     {
-        $this->pageNo = $pageNo;
+        $this->pageIndex = $pageIndex;
     }
 
     /**
@@ -137,22 +132,6 @@ class JdUnionOrderQueryRequest implements RequestInterface
         $this->type = $type;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getKey()
-    {
-        return $this->key;
-    }
-
-    /**
-     * @param mixed $key
-     */
-    public function setKey($key): void
-    {
-        $this->key = $key;
-    }
-
 
     /**
      * @return string
@@ -168,12 +147,11 @@ class JdUnionOrderQueryRequest implements RequestInterface
     public function getParamJson()
     {
         $params = [
-            'time' => $this->time,
-            'pageNo' => $this->pageNo,
-            'childUnionId' => $this->childUnionId,
+            'pageIndex' => $this->pageIndex,
             'pageSize' => $this->pageSize,
             'type' => $this->type,
-            'key' => $this->key,
+            'startTime'=>$this->startTime,
+            'endTime'=>$this->endTime,
         ];
 
         return json_encode([
